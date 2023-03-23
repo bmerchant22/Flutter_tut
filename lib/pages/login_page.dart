@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -17,18 +19,20 @@ class _LoginPageState extends State<LoginPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset("assets/images/login.png"),
-            SizedBox(height: 20,),
-            Text("Welcome $name!!", style: TextStyle(
+            Image.asset(
+              "assets/images/login.png",
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(height: 20),
+            Text("Welcome $name!!", style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),),
-            SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0 ),
               child: Column(
                   children: [TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Enter username",
                       labelText: "Username",
                     ),
@@ -39,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Enter password",
                       labelText: "Password",
                     ),
@@ -47,35 +51,38 @@ class _LoginPageState extends State<LoginPage> {
               ],
         ),
             ),
-            SizedBox(height: 40,),
+            const SizedBox(height: 40),
             
             InkWell(
               onTap: () async {
-                Navigator.pushNamed(context, MyRoutes.homeRoute);
                 setState(() {
                   changeButton= true;
                 });
 
-                await Future.delayed(Duration(seconds: 1));
+                await Future.delayed(const Duration(seconds: 1));
+                // ignore: use_build_context_synchronously
+                Navigator.pushNamed(context, MyRoutes.homeRoute);
               },
+
               child: AnimatedContainer(
-                duration: Duration(seconds: 1),
+                duration: const Duration(seconds: 1),
                 height: 50,
                 width: changeButton? 70:150,
                 alignment: Alignment.center,
+
                 decoration: BoxDecoration(
-                  color: Colors.deepOrangeAccent,
-                  //shape: changeButton? BoxShape.circle:BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(changeButton? 8:50)
+                    color: Colors.deepOrangeAccent,
+                    //shape: changeButton? BoxShape.circle:BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(changeButton? 50:8)
                 ),
-                child: changeButton?
-                Icon(
+                 child: changeButton?
+                const Icon(
                   Icons.done,
                   color: Colors.white,
                 )
-                    : Text("Login", style: TextStyle(
+                    : const Text("Login", style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 18,
                   color: Colors.white
                 ),),
               ),
